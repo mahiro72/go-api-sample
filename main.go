@@ -3,10 +3,10 @@ package main
 import (
 	"fmt"
 
-	"github.com/mahiro72/go-api-sample/web"
+	"github.com/mahiro72/go-api-sample/controller/router"
 )
 
 func main() {
 	fmt.Println("Server Started!")
-	web.Serve()
+	router.Serve()
 }

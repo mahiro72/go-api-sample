@@ -1,4 +1,4 @@
-package controller
+package handler
 
 import (
 	"encoding/json"
@@ -8,7 +8,7 @@ import (
 	"github.com/mahiro72/go-api-sample/impl/repository"
 	"github.com/mahiro72/go-api-sample/persistence"
 	"github.com/mahiro72/go-api-sample/usecase"
-	"github.com/mahiro72/go-api-sample/web/response"
+	"github.com/mahiro72/go-api-sample/controller/response"
 
 	"github.com/go-chi/chi/v5"
 )
