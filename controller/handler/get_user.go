@@ -5,10 +5,10 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/mahiro72/go-api-sample/controller/response"
 	"github.com/mahiro72/go-api-sample/impl/repository"
 	"github.com/mahiro72/go-api-sample/persistence"
 	"github.com/mahiro72/go-api-sample/usecase"
-	"github.com/mahiro72/go-api-sample/controller/response"
 
 	"github.com/go-chi/chi/v5"
 )
@@ -24,7 +24,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, usecase.ErrIDValidation):
 			w.WriteHeader(http.StatusBadRequest)
 			return
-		case errors.Is(err,usecase.ErrNoExistsData):
+		case errors.Is(err, usecase.ErrNoExistsData):
 			w.WriteHeader(http.StatusNotFound)
 			return
 		default:
@@ -34,7 +34,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	res := response.NewUser(user)
-	b,err := json.Marshal(res)
+	b, err := json.Marshal(res)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

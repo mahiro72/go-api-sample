@@ -5,10 +5,10 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/mahiro72/go-api-sample/controller/response"
 	"github.com/mahiro72/go-api-sample/impl/repository"
 	"github.com/mahiro72/go-api-sample/persistence"
 	"github.com/mahiro72/go-api-sample/usecase"
-	"github.com/mahiro72/go-api-sample/controller/response"
 )
 
 func CreateUser(w http.ResponseWriter, r *http.Request) {
@@ -31,7 +31,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 
 	res := response.NewUser(user)
-	b,err := json.Marshal(res)
+	b, err := json.Marshal(res)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		return

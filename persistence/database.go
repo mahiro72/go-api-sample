@@ -19,4 +19,3 @@ func init() {
 func NewDatabase() *Database {
 	return &database
 }
-

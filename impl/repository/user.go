@@ -24,9 +24,9 @@ func (repo *user) Create(ctx context.Context, user model.User) error {
 }
 
 func (repo *user) Find(ctx context.Context, userID model.UserID) (model.User, error) {
-	for _,u := range repo.db.UserList {
+	for _, u := range repo.db.UserList {
 		if u.ID.IsSame(userID) {
-			return u,nil
+			return u, nil
 		}
 	}
 	return model.User{}, repository.ErrNoUserFound

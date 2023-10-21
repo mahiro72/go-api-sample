@@ -14,10 +14,10 @@ func Serve() {
 
 	r.Route("/users", func(r chi.Router) {
 		r.Post("/", handler.CreateUser)
-		r.Get("/{userID}",handler.GetUser)
+		r.Get("/{userID}", handler.GetUser)
 	})
 
-	if err:=http.ListenAndServe(":8080",r);err!=nil{
+	if err := http.ListenAndServe(":8080", r); err != nil {
 		log.Fatal(err)
 	}
 }

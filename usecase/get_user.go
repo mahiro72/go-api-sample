@@ -18,21 +18,21 @@ func NewGetUser(repoUser repository.User) *getUser {
 	}
 }
 
-func (uc *getUser) Exec(ctx context.Context,userIDString string) (model.User,error) {
-	userID,err := model.ParseUserID(userIDString)
+func (uc *getUser) Exec(ctx context.Context, userIDString string) (model.User, error) {
+	userID, err := model.ParseUserID(userIDString)
 	if err != nil {
-		if errors.Is(err,model.ErrUserIDValidation) {
-			return model.User{},ErrIDValidation
+		if errors.Is(err, model.ErrUserIDValidation) {
+			return model.User{}, ErrIDValidation
 		}
-		return model.User{},err
+		return model.User{}, err
 	}
 
-	user,err := uc.repoUser.Find(ctx,userID)
+	user, err := uc.repoUser.Find(ctx, userID)
 	if err != nil {
-		if errors.Is(err,repository.ErrNoUserFound) {
-			return model.User{},ErrNoExistsData
+		if errors.Is(err, repository.ErrNoUserFound) {
+			return model.User{}, ErrNoExistsData
 		}
-		return model.User{},err
+		return model.User{}, err
 	}
-	return user,nil
+	return user, nil
 }

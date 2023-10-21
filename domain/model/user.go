@@ -20,12 +20,12 @@ func (u UserID) IsSame(other UserID) bool {
 	return u.String() == other.String()
 }
 
-func ParseUserID(userIDString string) (UserID,error) {
-	userID,err := uuid.Parse(userIDString)
+func ParseUserID(userIDString string) (UserID, error) {
+	userID, err := uuid.Parse(userIDString)
 	if err != nil {
-		return "",ErrUserIDValidation
+		return "", ErrUserIDValidation
 	}
-	return UserID(userID.String()),nil
+	return UserID(userID.String()), nil
 }
 
 type User struct {
