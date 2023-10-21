@@ -13,12 +13,12 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func GetUser(w http.ResponseWriter, r *http.Request) {
+func GetUserPostList(w http.ResponseWriter, r *http.Request) {
 	userIDString := chi.URLParam(r, "userID")
 
 	db := inmemory.NewDatabase()
-	uc := usecase.NewGetUser(repository.NewUser(db))
-	user, err := uc.Exec(r.Context(), userIDString)
+	uc := usecase.NewGetUserPostList(repository.NewUser(db), repository.NewPost(db))
+	postList, err := uc.Exec(r.Context(), userIDString)
 	if err != nil {
 		switch {
 		case errors.Is(err, usecase.ErrIDValidation):
@@ -33,7 +33,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	res := response.NewUser(user)
+	res := response.NewPostList(postList)
 	b, err := json.Marshal(res)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

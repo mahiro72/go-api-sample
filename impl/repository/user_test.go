@@ -9,13 +9,13 @@ import (
 	"github.com/mahiro72/go-api-sample/domain/model"
 	"github.com/mahiro72/go-api-sample/domain/repository"
 	repositoryImpl "github.com/mahiro72/go-api-sample/impl/repository"
-	"github.com/mahiro72/go-api-sample/persistence"
+	"github.com/mahiro72/go-api-sample/persistence/inmemory"
 )
 
 func TestUser_Create(t *testing.T) {
 	t.Run("normal", func(t *testing.T) {
-		persistence.ResetDatabase()
-		db := persistence.NewDatabase()
+		inmemory.ResetDatabase()
+		db := inmemory.NewDatabase()
 
 		repo := repositoryImpl.NewUser(db)
 		err := repo.Create(context.Background(), model.User{
@@ -31,8 +31,8 @@ func TestUser_Create(t *testing.T) {
 
 func TestUser_Find(t *testing.T) {
 	t.Run("normal", func(t *testing.T) {
-		persistence.ResetDatabase()
-		db := persistence.NewDatabase()
+		inmemory.ResetDatabase()
+		db := inmemory.NewDatabase()
 		// データの用意
 		err := repositoryImpl.NewUser(db).Create(context.Background(), model.User{
 			ID:        "xxxx",
@@ -51,8 +51,8 @@ func TestUser_Find(t *testing.T) {
 	})
 
 	t.Run("failure no user found", func(t *testing.T) {
-		persistence.ResetDatabase()
-		db := persistence.NewDatabase()
+		inmemory.ResetDatabase()
+		db := inmemory.NewDatabase()
 		// データの用意
 		err := repositoryImpl.NewUser(db).Create(context.Background(), model.User{
 			ID:        "xxxx",

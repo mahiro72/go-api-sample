@@ -7,7 +7,8 @@ import (
 
 	"github.com/mahiro72/go-api-sample/controller/response"
 	"github.com/mahiro72/go-api-sample/impl/repository"
-	"github.com/mahiro72/go-api-sample/persistence"
+	"github.com/mahiro72/go-api-sample/impl/service"
+	"github.com/mahiro72/go-api-sample/persistence/inmemory"
 	"github.com/mahiro72/go-api-sample/usecase"
 )
 
@@ -18,9 +19,10 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	db := persistence.NewDatabase()
-	uc := usecase.NewCreateUser(repository.NewUser(db))
-	user, err := uc.Exec(r.Context(), j.Name)
+	db := inmemory.NewDatabase()
+	repoUser := repository.NewUser(db)
+	uc := usecase.NewCreateUser(repoUser, service.NewUserNameValidator(repoUser))
+	user, err := uc.Exec(r.Context(), j.Name, j.Password)
 	if err != nil {
 		if errors.Is(err, usecase.ErrFieldsValidation) {
 			w.WriteHeader(http.StatusBadRequest)
@@ -41,5 +43,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 }
 
 type requestCreateUser struct {
-	Name string `json:"name"`
+	Name     string `json:"name"`
+	Password string `json:"password"`
 }

@@ -17,6 +17,10 @@ func Serve() {
 		r.Get("/{userID}", handler.GetUser)
 	})
 
+	r.Route("/users/{userID}/posts", func(r chi.Router) {
+		r.Post("/", handler.CreateUserPost)
+		r.Get("/list", handler.GetUserPostList)
+	})
 	if err := http.ListenAndServe(":8080", r); err != nil {
 		log.Fatal(err)
 	}
