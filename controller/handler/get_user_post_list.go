@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/mahiro72/go-api-sample/controller/response"
+	"github.com/mahiro72/go-api-sample/controller/view"
 	"github.com/mahiro72/go-api-sample/impl/repository"
 	"github.com/mahiro72/go-api-sample/persistence/inmemory"
 	"github.com/mahiro72/go-api-sample/usecase"
@@ -33,7 +33,7 @@ func GetUserPostList(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	res := response.NewPostList(postList)
+	res := view.NewPostList(postList)
 	b, err := json.Marshal(res)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)

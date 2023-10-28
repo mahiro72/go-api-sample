@@ -5,7 +5,7 @@ import (
 	"errors"
 	"net/http"
 
-	"github.com/mahiro72/go-api-sample/controller/response"
+	"github.com/mahiro72/go-api-sample/controller/view"
 	"github.com/mahiro72/go-api-sample/impl/repository"
 	"github.com/mahiro72/go-api-sample/impl/service"
 	"github.com/mahiro72/go-api-sample/persistence/inmemory"
@@ -44,7 +44,7 @@ func CreateUserPost(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	res := response.NewPost(post)
+	res := view.NewPost(post)
 	b, err := json.Marshal(res)
 	if err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
