@@ -12,6 +12,11 @@ import (
 func Serve() {
 	r := chi.NewRouter()
 
+	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("health ok!"))
+	})
+
 	r.Route("/users", func(r chi.Router) {
 		r.Post("/", handler.CreateUser)
 		r.Get("/{userID}", handler.GetUser)

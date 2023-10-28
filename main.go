@@ -7,6 +7,6 @@ import (
 )
 
 func main() {
-	fmt.Println("Server Started!")
+	fmt.Println("Server Started")
 	router.Serve()
 }
