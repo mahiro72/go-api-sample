@@ -1,5 +1,9 @@
 # Go API Sample
 
+GoのAPIのサンプルリポジトリです。
+
+気になる点や改善点などありましたらissueを立てたり、気軽に[@mahiro0x00](https://x.com/mahiro0x00)までご連絡ください。
+
 ## 内容
 
 シンプルな掲示板サービス
