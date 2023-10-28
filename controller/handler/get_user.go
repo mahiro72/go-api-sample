@@ -24,7 +24,7 @@ func GetUser(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, usecase.ErrIDValidation):
 			w.WriteHeader(http.StatusBadRequest)
 			return
-		case errors.Is(err, usecase.ErrNoExistsData):
+		case errors.Is(err, usecase.ErrNotExistsData):
 			w.WriteHeader(http.StatusNotFound)
 			return
 		default:

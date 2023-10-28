@@ -26,7 +26,7 @@ func (uc *createUserPost) Exec(ctx context.Context, title, content, name, passwo
 	userID, err := uc.svcUserRegistrationChecker.CheckUserRegistration(ctx, name, password)
 	if err != nil {
 		if errors.Is(err, service.ErrNoUserFound) {
-			return model.Post{}, ErrNoExistsData
+			return model.Post{}, ErrNotExistsData
 		}
 		return model.Post{}, err
 	}

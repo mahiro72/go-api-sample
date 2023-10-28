@@ -33,7 +33,7 @@ func (uc *getUserPostList) Exec(ctx context.Context, userIDString string) ([]mod
 	_, err = uc.repoUser.Find(ctx, userID)
 	if err != nil {
 		if errors.Is(err, repository.ErrNoUserFound) {
-			return []model.Post{}, ErrNoExistsData
+			return []model.Post{}, ErrNotExistsData
 		}
 		return []model.Post{}, err
 	}

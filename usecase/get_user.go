@@ -30,7 +30,7 @@ func (uc *getUser) Exec(ctx context.Context, userIDString string) (model.User, e
 	user, err := uc.repoUser.Find(ctx, userID)
 	if err != nil {
 		if errors.Is(err, repository.ErrNoUserFound) {
-			return model.User{}, ErrNoExistsData
+			return model.User{}, ErrNotExistsData
 		}
 		return model.User{}, err
 	}

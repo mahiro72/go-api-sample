@@ -35,7 +35,7 @@ func CreateUserPost(w http.ResponseWriter, r *http.Request) {
 		case errors.Is(err, usecase.ErrFieldsValidation):
 			w.WriteHeader(http.StatusBadRequest)
 			return
-		case errors.Is(err, usecase.ErrNoExistsData):
+		case errors.Is(err, usecase.ErrNotExistsData):
 			w.WriteHeader(http.StatusNotFound)
 			return
 		default:
