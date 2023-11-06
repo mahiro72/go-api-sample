@@ -28,7 +28,7 @@ GoのAPIのサンプルリポジトリです。
 │   └── service //ドメインロジックのインターフェース
 ├── impl
 │   ├── repository //domain/repositoryの具体的な実装
-│   └── servic //domain/serviceの具体的な実装
+│   └── service //domain/serviceの具体的な実装
 ├── main.go //このアプリケーションのエントリーポイント
 ├── persistence
 │   └── inmemory
